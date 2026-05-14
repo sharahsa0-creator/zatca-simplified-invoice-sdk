@@ -17,6 +17,10 @@ TypeScript SDK for generating ZATCA simplified invoice QR payloads.
 npm install zatca-simplified-invoice-sdk
 ```
 
+## Node.js Support
+
+- Node.js 20+
+
 ## Usage
 
 ```ts
@@ -30,6 +34,20 @@ const qr = buildQRCodeBase64({
   vatTotal: '15.00'
 });
 ```
+
+## API Reference
+
+### encodeTLV(fields)
+
+Encodes TLV fields into a UTF-8 byte-safe Uint8Array.
+
+### buildQRCodePayload(data)
+
+Builds the raw TLV QR payload.
+
+### buildQRCodeBase64(data)
+
+Returns the Base64-encoded QR payload.
 
 ## ZATCA QR Fields
 
@@ -64,6 +82,16 @@ The following are intentionally excluded from this MVP release:
 - Certificate onboarding
 - ZATCA onboarding APIs
 - UI components
+
+## Versioning
+
+This package follows semantic versioning.
+
+## Publishing Roadmap
+
+- PR-1: QR/TLV foundation
+- PR-2: XML canonicalization and invoice hash foundation
+- PR-3: Cryptographic signing helpers
 
 ## Roadmap
 
