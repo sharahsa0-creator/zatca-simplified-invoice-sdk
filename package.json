@@ -5,6 +5,14 @@
   "type": "module",
   "license": "MIT",
   "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sharahsa0-creator/zatca-simplified-invoice-sdk.git"
+  },
+  "homepage": "https://github.com/sharahsa0-creator/zatca-simplified-invoice-sdk#readme",
+  "bugs": {
+    "url": "https://github.com/sharahsa0-creator/zatca-simplified-invoice-sdk/issues"
+  },
   "files": ["dist", "README.md", "LICENSE", "CHANGELOG.md"],
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
