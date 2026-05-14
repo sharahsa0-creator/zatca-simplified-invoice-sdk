@@ -11,6 +11,7 @@ TypeScript SDK for generating ZATCA simplified invoice QR payloads.
 - Type-safe APIs
 - XML canonicalization helper
 - SHA-256 invoice hashing helper
+- QR Phase 2 field normalization helpers
 - Minimal dependency footprint
 
 ## Installation
@@ -50,12 +51,27 @@ import {
 const xml = `<Invoice><cbc:ID>INV-100</cbc:ID></Invoice>`;
 
 const canonical = canonicalizeXml(xml);
-
 const hash = createInvoiceHash(xml);
 
 console.log(canonical.canonicalXml);
 console.log(hash.hashBase64);
 console.log(hash.hashHex);
+```
+
+### QR Phase 2 Helpers
+
+```ts
+import {
+  createCertificateSignatureTag,
+  createEcdsaSignatureTag,
+  createInvoiceHashTag,
+  createPublicKeyTag
+} from 'zatca-simplified-invoice-sdk';
+
+const invoiceHashTag = createInvoiceHashTag('QUJDREVGR0g=');
+const signatureTag = createEcdsaSignatureTag('QUJDREVGR0g=');
+const publicKeyTag = createPublicKeyTag('QUJDREVGR0g=');
+const certificateSignatureTag = createCertificateSignatureTag('QUJDREVGR0g=');
 ```
 
 ## API Reference
@@ -97,6 +113,22 @@ Returns:
 - SHA-256 base64
 - SHA-256 hex
 
+### createInvoiceHashTag(invoiceHash)
+
+Creates normalized QR tag 6.
+
+### createEcdsaSignatureTag(signature)
+
+Creates normalized QR tag 7.
+
+### createPublicKeyTag(publicKey)
+
+Creates normalized QR tag 8.
+
+### createCertificateSignatureTag(signature)
+
+Creates normalized QR tag 9.
+
 ## ZATCA QR Fields
 
 ### Phase 1 Required Tags
@@ -118,15 +150,15 @@ Returns:
 | 8 | ECDSA public key |
 | 9 | ZATCA cryptographic stamp signature |
 
-## Out of Scope for PR-2
+## Out of Scope for PR-3
 
 The following are intentionally excluded from this release:
 
-- Full XML generation
 - ECDSA signing
-- XAdES
+- Private key handling
 - CSR generation
-- Certificates
+- Certificate generation
+- XAdES
 - ZATCA onboarding APIs
 - UI components
 
@@ -138,4 +170,5 @@ This package follows semantic versioning.
 
 - PR-1: QR/TLV foundation
 - PR-2: XML canonicalization and invoice hash foundation
-- PR-3: Cryptographic signing helpers
+- PR-3: QR Phase 2 field helpers
+- PR-4: Cryptographic signing helpers
