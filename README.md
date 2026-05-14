@@ -7,6 +7,8 @@ TypeScript SDK for generating ZATCA simplified invoice QR payloads.
 - TLV encoder
 - QR payload builder
 - Base64 QR output
+- QR SVG generation
+- QR PNG generation
 - UTF-8 byte-safe encoding
 - Type-safe APIs
 - XML canonicalization helper
@@ -38,6 +40,20 @@ const qr = buildQRCodeBase64({
   invoiceTotal: '100.00',
   vatTotal: '15.00'
 });
+```
+
+### QR Image Generation
+
+```ts
+import {
+  createQrPng,
+  createQrSvg
+} from 'zatca-simplified-invoice-sdk';
+
+const payload = 'U2FtcGxlLVFSLVBheWxvYWQ=';
+
+const svg = await createQrSvg(payload);
+const png = await createQrPng(payload);
 ```
 
 ### XML Canonicalization + Invoice Hash
@@ -87,6 +103,14 @@ Builds the raw TLV QR payload.
 ### buildQRCodeBase64(data)
 
 Returns the Base64-encoded QR payload.
+
+### createQrSvg(input, options?)
+
+Returns QR image as SVG string.
+
+### createQrPng(input, options?)
+
+Returns QR image as PNG bytes.
 
 ### canonicalizeXml(xml, options?)
 
@@ -150,16 +174,17 @@ Creates normalized QR tag 9.
 | 8 | ECDSA public key |
 | 9 | ZATCA cryptographic stamp signature |
 
-## Out of Scope for PR-3
+## Out of Scope for PR-4
 
 The following are intentionally excluded from this release:
 
-- ECDSA signing
+- Signing
 - Private key handling
 - CSR generation
 - Certificate generation
 - XAdES
 - ZATCA onboarding APIs
+- API integrations
 - UI components
 
 ## Versioning
@@ -171,4 +196,5 @@ This package follows semantic versioning.
 - PR-1: QR/TLV foundation
 - PR-2: XML canonicalization and invoice hash foundation
 - PR-3: QR Phase 2 field helpers
-- PR-4: Cryptographic signing helpers
+- PR-4: QR image generation
+- PR-5: Cryptographic signing helpers
