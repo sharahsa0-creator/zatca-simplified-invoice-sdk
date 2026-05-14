@@ -1,5 +1,28 @@
 # Changelog
 
+## 0.3.0
+
+### Added
+
+- QR Phase 2 field helper utilities
+- Tag 6 invoice hash helper
+- Tag 7 ECDSA signature helper
+- Tag 8 ECDSA public key helper
+- Tag 9 certificate signature helper
+- Base64 normalization helpers for Phase 2 QR fields
+- Phase 2 helper tests
+
+### Scope Excluded
+
+- ECDSA signing
+- Private key handling
+- CSR generation
+- Certificate generation
+- XAdES
+- ZATCA onboarding
+- API integration
+- UI components
+
 ## 0.2.0
 
 ### Added
