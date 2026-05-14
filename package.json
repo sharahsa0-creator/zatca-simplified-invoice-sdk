@@ -1,0 +1,38 @@
+{
+  "name": "zatca-simplified-invoice-sdk",
+  "version": "0.1.0",
+  "description": "TypeScript SDK for ZATCA simplified invoice QR payloads",
+  "type": "module",
+  "license": "MIT",
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sharahsa0-creator/zatca-simplified-invoice-sdk.git"
+  },
+  "homepage": "https://github.com/sharahsa0-creator/zatca-simplified-invoice-sdk#readme",
+  "bugs": {
+    "url": "https://github.com/sharahsa0-creator/zatca-simplified-invoice-sdk/issues"
+  },
+  "files": ["dist", "README.md", "LICENSE", "CHANGELOG.md"],
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json && tsc -p tsconfig.cjs.json",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "lint": "tsc --noEmit -p tsconfig.json --pretty false"
+  },
+  "keywords": ["zatca", "fatoora", "invoice", "qr", "tlv", "typescript"],
+  "devDependencies": {
+    "typescript": "^5.8.3",
+    "vitest": "^3.1.4"
+  }
+}
