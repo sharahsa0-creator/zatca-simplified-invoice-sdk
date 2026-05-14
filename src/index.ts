@@ -16,6 +16,18 @@ function assertMoney(value: string, field: string): void {
   }
 }
 
+function assertTimestamp(value: string): void {
+  if (Number.isNaN(Date.parse(value))) {
+    throw new Error('timestamp must be a valid ISO timestamp');
+  }
+}
+
+function assertVatNumber(value: string): void {
+  if (!/^\d{15}$/.test(value)) {
+    throw new Error('vatRegistrationNumber must contain 15 digits');
+  }
+}
+
 function encodeBase64(bytes: Uint8Array): string {
   const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
   let output = '';
@@ -58,8 +70,8 @@ export function encodeTLV(fields: ZatcaTLVField[]): Uint8Array {
 
 export function buildQRCodePayload(data: ZatcaQRCodeData): Uint8Array {
   assertRequired(data.sellerName, 'sellerName');
-  assertRequired(data.vatRegistrationNumber, 'vatRegistrationNumber');
-  assertRequired(data.timestamp, 'timestamp');
+  assertVatNumber(data.vatRegistrationNumber);
+  assertTimestamp(data.timestamp);
   assertMoney(data.invoiceTotal, 'invoiceTotal');
   assertMoney(data.vatTotal, 'vatTotal');
 
