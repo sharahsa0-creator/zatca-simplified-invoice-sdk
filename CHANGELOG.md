@@ -1,5 +1,30 @@
 # Changelog
 
+## 0.5.0
+
+### Added
+
+- npm release readiness improvements
+- `prepublishOnly` validation hook
+- ESM/CJS/default export alignment
+- npm publish configuration improvements
+- `CONTRIBUTING.md`
+- `SECURITY.md`
+- improved `.npmignore`
+- README publishing guidance
+- npm badges
+
+### Scope Excluded
+
+- ZATCA feature additions
+- signing
+- CSR
+- certificate lifecycle management
+- XAdES
+- onboarding
+- API integration
+- UI components
+
 ## 0.4.0
 
 ### Added
