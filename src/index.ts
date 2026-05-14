@@ -108,3 +108,5 @@ export {
   createPublicKeyTag
 } from './phase2.js';
 export type { Phase2QrField, Phase2QrFields, Phase2QrTag } from './phase2.js';
+export { createQrPng, createQrSvg } from './qr-image.js';
+export type { QrImageInput, QrImageOptions } from './qr-image.js';
