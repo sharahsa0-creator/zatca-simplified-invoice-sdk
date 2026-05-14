@@ -100,3 +100,11 @@ export { canonicalizeXml, removeInvoiceSignatureArtifacts } from './xml.js';
 export type { XmlCanonicalizationOptions, XmlCanonicalizationResult } from './xml.js';
 export { createInvoiceHash, INVOICE_HASH_ALGORITHM } from './hash.js';
 export type { InvoiceHashResult } from './hash.js';
+export {
+  createCertificateSignatureTag,
+  createEcdsaSignatureTag,
+  createInvoiceHashTag,
+  createPhase2QrFields,
+  createPublicKeyTag
+} from './phase2.js';
+export type { Phase2QrField, Phase2QrFields, Phase2QrTag } from './phase2.js';
