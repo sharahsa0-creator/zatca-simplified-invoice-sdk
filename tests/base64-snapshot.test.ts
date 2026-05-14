@@ -9,7 +9,7 @@ describe('Base64 snapshots', () => {
 
   it('returns a stable QR Base64 value', () => {
     expect(buildQRCodeBase64(sampleQRCodeData)).toBe(
-      'AQVStoreCDzMwMDAwMDAwMDAwMDAwMDMDFDIwMjUtMDEtMDFUMDA6MDA6MDBaBAYxMDAuMDAFBTE1LjAw'
+      'AQVTdG9yZQIPMzAwMDAwMDAwMDAwMDAzAxQyMDI1LTAxLTAxVDAwOjAwOjAwWgQGMTAwLjAwBQUxNS4wMA=='
     );
   });
 });
