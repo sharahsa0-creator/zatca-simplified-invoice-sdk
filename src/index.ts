@@ -96,3 +96,7 @@ export function buildQRCodeBase64(data: ZatcaQRCodeData): string {
 }
 
 export type { ZatcaQRCodeData, ZatcaTLVField } from './types.js';
+export { canonicalizeXml, removeInvoiceSignatureArtifacts } from './xml.js';
+export type { XmlCanonicalizationOptions, XmlCanonicalizationResult } from './xml.js';
+export { createInvoiceHash, INVOICE_HASH_ALGORITHM } from './hash.js';
+export type { InvoiceHashResult } from './hash.js';

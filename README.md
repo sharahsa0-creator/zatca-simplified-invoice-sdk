@@ -9,6 +9,8 @@ TypeScript SDK for generating ZATCA simplified invoice QR payloads.
 - Base64 QR output
 - UTF-8 byte-safe encoding
 - Type-safe APIs
+- XML canonicalization helper
+- SHA-256 invoice hashing helper
 - Minimal dependency footprint
 
 ## Installation
@@ -23,6 +25,8 @@ npm install zatca-simplified-invoice-sdk
 
 ## Usage
 
+### QR Payload
+
 ```ts
 import { buildQRCodeBase64 } from 'zatca-simplified-invoice-sdk';
 
@@ -33,6 +37,25 @@ const qr = buildQRCodeBase64({
   invoiceTotal: '100.00',
   vatTotal: '15.00'
 });
+```
+
+### XML Canonicalization + Invoice Hash
+
+```ts
+import {
+  canonicalizeXml,
+  createInvoiceHash
+} from 'zatca-simplified-invoice-sdk';
+
+const xml = `<Invoice><cbc:ID>INV-100</cbc:ID></Invoice>`;
+
+const canonical = canonicalizeXml(xml);
+
+const hash = createInvoiceHash(xml);
+
+console.log(canonical.canonicalXml);
+console.log(hash.hashBase64);
+console.log(hash.hashHex);
 ```
 
 ## API Reference
@@ -48,6 +71,31 @@ Builds the raw TLV QR payload.
 ### buildQRCodeBase64(data)
 
 Returns the Base64-encoded QR payload.
+
+### canonicalizeXml(xml, options?)
+
+Returns canonical XML after:
+
+- removing XML declaration
+- normalizing line endings
+- removing signature-related XML artifacts
+
+### removeInvoiceSignatureArtifacts(xml)
+
+Removes:
+
+- `ext:UBLExtensions`
+- `cac:Signature`
+- `ds:Signature`
+
+### createInvoiceHash(xml, options?)
+
+Returns:
+
+- canonical XML
+- SHA-256 bytes
+- SHA-256 base64
+- SHA-256 hex
 
 ## ZATCA QR Fields
 
@@ -70,16 +118,15 @@ Returns the Base64-encoded QR payload.
 | 8 | ECDSA public key |
 | 9 | ZATCA cryptographic stamp signature |
 
-## Out of Scope for PR-1
+## Out of Scope for PR-2
 
-The following are intentionally excluded from this MVP release:
+The following are intentionally excluded from this release:
 
-- XML generation
-- XML hashing
+- Full XML generation
 - ECDSA signing
 - XAdES
 - CSR generation
-- Certificate onboarding
+- Certificates
 - ZATCA onboarding APIs
 - UI components
 
@@ -92,13 +139,3 @@ This package follows semantic versioning.
 - PR-1: QR/TLV foundation
 - PR-2: XML canonicalization and invoice hash foundation
 - PR-3: Cryptographic signing helpers
-
-## Roadmap
-
-Future releases may include:
-
-- XML hashing helpers
-- ECDSA signing utilities
-- XAdES helpers
-- CSR generation
-- Certificate onboarding flows
