@@ -1,5 +1,9 @@
 # zatca-simplified-invoice-sdk
 
+![npm](https://img.shields.io/npm/v/zatca-simplified-invoice-sdk)
+![license](https://img.shields.io/npm/l/zatca-simplified-invoice-sdk)
+![node](https://img.shields.io/node/v/zatca-simplified-invoice-sdk)
+
 TypeScript SDK for generating ZATCA simplified invoice QR payloads.
 
 ## Features
@@ -14,6 +18,7 @@ TypeScript SDK for generating ZATCA simplified invoice QR payloads.
 - XML canonicalization helper
 - SHA-256 invoice hashing helper
 - QR Phase 2 field normalization helpers
+- ESM + CommonJS output support
 - Minimal dependency footprint
 
 ## Installation
@@ -25,6 +30,14 @@ npm install zatca-simplified-invoice-sdk
 ## Node.js Support
 
 - Node.js 20+
+
+## Module Support
+
+The package exports:
+
+- ESM build
+- CommonJS build
+- TypeScript declarations
 
 ## Usage
 
@@ -89,6 +102,18 @@ const signatureTag = createEcdsaSignatureTag('QUJDREVGR0g=');
 const publicKeyTag = createPublicKeyTag('QUJDREVGR0g=');
 const certificateSignatureTag = createCertificateSignatureTag('QUJDREVGR0g=');
 ```
+
+## Release Validation
+
+Before publishing:
+
+```bash
+npm run build
+npm test
+npm run typecheck
+```
+
+`prepublishOnly` automatically runs these validations before npm publish.
 
 ## API Reference
 
@@ -174,27 +199,19 @@ Creates normalized QR tag 9.
 | 8 | ECDSA public key |
 | 9 | ZATCA cryptographic stamp signature |
 
-## Out of Scope for PR-4
+## Out of Scope
 
-The following are intentionally excluded from this release:
+The SDK intentionally excludes:
 
-- Signing
-- Private key handling
+- signing flows
+- private key handling
 - CSR generation
-- Certificate generation
+- certificate lifecycle management
 - XAdES
-- ZATCA onboarding APIs
-- API integrations
+- onboarding APIs
 - UI components
+- backend persistence
 
 ## Versioning
 
 This package follows semantic versioning.
-
-## Publishing Roadmap
-
-- PR-1: QR/TLV foundation
-- PR-2: XML canonicalization and invoice hash foundation
-- PR-3: QR Phase 2 field helpers
-- PR-4: QR image generation
-- PR-5: Cryptographic signing helpers

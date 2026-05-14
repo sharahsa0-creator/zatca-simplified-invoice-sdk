@@ -5,6 +5,10 @@
   "type": "module",
   "license": "MIT",
   "sideEffects": false,
+  "author": "sharahsa0-creator",
+  "engines": {
+    "node": ">=20"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sharahsa0-creator/zatca-simplified-invoice-sdk.git"
@@ -13,7 +17,14 @@
   "bugs": {
     "url": "https://github.com/sharahsa0-creator/zatca-simplified-invoice-sdk/issues"
   },
-  "files": ["dist", "README.md", "LICENSE", "CHANGELOG.md"],
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md",
+    "CONTRIBUTING.md",
+    "SECURITY.md"
+  ],
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "types": "./dist/esm/index.d.ts",
@@ -21,16 +32,28 @@
     ".": {
       "types": "./dist/esm/index.d.ts",
       "import": "./dist/esm/index.js",
-      "require": "./dist/cjs/index.js"
+      "require": "./dist/cjs/index.js",
+      "default": "./dist/esm/index.js"
     }
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "scripts": {
     "build": "tsc -p tsconfig.json && tsc -p tsconfig.cjs.json",
     "test": "vitest run",
     "typecheck": "tsc --noEmit -p tsconfig.json",
-    "lint": "tsc --noEmit -p tsconfig.json --pretty false"
+    "lint": "tsc --noEmit -p tsconfig.json --pretty false",
+    "prepublishOnly": "npm run build && npm run test && npm run typecheck"
   },
-  "keywords": ["zatca", "fatoora", "invoice", "qr", "tlv", "typescript"],
+  "keywords": [
+    "zatca",
+    "fatoora",
+    "invoice",
+    "qr",
+    "tlv",
+    "typescript"
+  ],
   "dependencies": {
     "qrcode": "^1.5.4"
   },

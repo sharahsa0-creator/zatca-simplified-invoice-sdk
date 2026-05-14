@@ -1,5 +1,9 @@
-tests
-.github
-examples
-src
-node_modules
+tests/
+.github/
+examples/
+src/
+node_modules/
+coverage/
+*.log
+vitest.config.*
+tsconfig*.json
