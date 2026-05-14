@@ -1,5 +1,28 @@
 # Changelog
 
+## 0.4.0
+
+### Added
+
+- QR SVG generation helper
+- QR PNG generation helper
+- Support for QR image generation from:
+  - Base64 payloads
+  - ZatcaQRCodeData
+- QR image tests
+- Lightweight QR image dependency
+
+### Scope Excluded
+
+- Signing
+- Private key handling
+- CSR generation
+- Certificate generation
+- XAdES
+- ZATCA onboarding
+- API integration
+- UI components
+
 ## 0.3.0
 
 ### Added
